@@ -1,7 +1,6 @@
 'use client';
 
-import { motion, LazyMotion, domAnimation } from 'framer-motion';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const socialLinks = [
@@ -36,91 +35,75 @@ const socialLinks = [
 
 export default function HeroSection() {
   return (
-    <LazyMotion features={domAnimation}>
-      <div className="min-h-screen flex items-center bg-[#14161F] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          {/* Photo Section */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative group"
-          >
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-500 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300" />
-              <div className="relative rounded-2xl overflow-hidden">
-                <Image
-                  src="/images/profile.jpg"
-                  alt="Rey An"
-                  fill
-                  className="object-cover transform group-hover:scale-105 transition duration-300"
-                  sizes="(max-width: 768px) 256px, 320px"
-                  priority
-                />
-              </div>
-            </div>
-          </motion.div>
+    <div className="min-h-screen flex items-center justify-center bg-[#14161F] px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+            Rey An
+          </h1>
+          <h2 className="text-xl md:text-2xl text-gray-300 mb-6">
+            AI & Blockchain Developer
+          </h2>
+          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+            Specializing in autonomous agents, blockchain analytics, and AI-powered development tools.
+            Building the future of decentralized intelligence.
+          </p>
 
-          {/* Content Section */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+          {/* Social Links */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex-1 text-center md:text-left"
+            className="flex gap-6 mb-8 justify-center"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-              Rey An
-            </h1>
-            <h2 className="text-xl md:text-2xl text-gray-300 mb-6">
-              AI & Blockchain Developer
-            </h2>
-            <p className="text-gray-400 mb-8 max-w-2xl">
-              Specializing in autonomous agents, blockchain analytics, and AI-powered development tools.
-              Building the future of decentralized intelligence.
-            </p>
-
-            {/* Social Links */}
-            <div className="flex gap-6 mb-8 justify-center md:justify-start">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex gap-4 flex-col sm:flex-row justify-center md:justify-start">
+            {socialLinks.map((social) => (
               <motion.a
-                href="#projects"
-                whileHover={{ scale: 1.05 }}
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 
-                         rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all 
-                         duration-300 shadow-lg hover:shadow-purple-500/25"
               >
-                View Projects
+                {social.icon}
               </motion.a>
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border border-gray-600 text-gray-300 px-8 py-3 rounded-lg 
-                         hover:border-gray-400 hover:text-white transition-colors"
-              >
-                Contact Me
-              </motion.a>
-            </div>
+            ))}
           </motion.div>
-        </div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex gap-4 flex-col sm:flex-row justify-center"
+          >
+            <motion.a
+              href="#projects"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 
+                       rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all 
+                       duration-300 shadow-lg hover:shadow-purple-500/25"
+            >
+              View Projects
+            </motion.a>
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="border border-gray-600 text-gray-300 px-8 py-3 rounded-lg 
+                       hover:border-gray-400 hover:text-white transition-colors"
+            >
+              Contact Me
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </div>
-    </LazyMotion>
+    </div>
   );
 } 
